@@ -1,31 +1,28 @@
-// import worldMap from '../../assets/svg/world.svg';
-import "./styles.scss";
-// import WorldMap from './WorldMap';
-// import worldMap from './WorldMap';
-import SvgWorld from '../../assets/svgToComponent/World';
+import { Button, Icon } from 'semantic-ui-react';
+import cn from 'classnames';
+import SvgWorld from '../SvgWorld';
+import './styles.scss';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
+// interface MapProps {}
 function Map() {
-  const handleSelectCountry = (e : Event) => {
-    if (e.target.id) {
-      console.log(e.target.id);
-    }
-  };
+  const dispatch = useAppDispatch();
 
   return (
     <div className="world-map">
       <div className="zoom">
-        <span className="zoom-title">Zoom :</span>
-        <button type="button" className="zoom-button" id="reset-button">
-          Reset
-        </button>
-        <button type="button" className="zoom-button" id="zoom-out">
-          -
-        </button>
-        <button type="button" className="zoom-button" id="zoom-in">
-          +
-        </button>
+        <Button
+          icon
+          size="small"
+          compact
+          onClick={() => console.log('test')}
+        >
+          <Icon flipped="horizontally" name="repeat" />
+        </Button>
+        <Button icon="zoom-out" primary compact circular />
+        <Button icon="zoom-in" primary compact circular />
       </div>
-      <SvgWorld clickOnMap={handleSelectCountry} />
+      <SvgWorld />
     </div>
   );
 }
