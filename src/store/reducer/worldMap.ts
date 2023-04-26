@@ -1,13 +1,12 @@
 import { createAction, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { createAppAsyncThunk } from '../utils/redux';
-import { CountryInfos } from '../../@types/country';
+import { ICountryInfos } from '../../@types/country';
 
 interface WorldMapState {
   previouslySelectedCountry: string
   selectedCountryCode: string
-  countryInfos: CountryInfos | null
-  zoom: number
+  countryInfos: ICountryInfos[]
   loading: boolean
   error: string
 }
@@ -15,8 +14,7 @@ interface WorldMapState {
 const initialState: WorldMapState = {
   previouslySelectedCountry: '',
   selectedCountryCode: '',
-  countryInfos: null,
-  zoom: 1,
+  countryInfos: [],
   loading: false,
   error: '',
 };
@@ -26,19 +24,18 @@ export const setNewCountry = createAppAsyncThunk('worldMap/SET_NEW_COUNTRY', asy
   const { data: country } = await axios.get(
     `https://restcountries.com/v3.1/alpha/${cca2Code}`,
   );
-  // console.log(country[0]);
-  return country[0] as CountryInfos;
+  return country as ICountryInfos[];
 });
 
 export const worldMapReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(setNewCountry.pending, (state) => {
+      state.error = '';
       state.loading = true;
     })
     .addCase(setNewCountry.fulfilled, (state, action) => {
       state.loading = false;
       state.countryInfos = action.payload;
-      // console.log(state.countryInfos);
     })
     .addCase(setNewCountry.rejected, (state) => {
       state.loading = false;

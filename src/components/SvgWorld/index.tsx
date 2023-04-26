@@ -4,12 +4,15 @@ import cn from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { setCountryCode, setNewCountry } from '../../store/reducer/worldMap';
 
-function SvgWorld() {
+interface SVGProps {
+  zoomScale: number
+}
+function SvgWorld({ zoomScale }: SVGProps) {
   const dispatch = useAppDispatch();
   const selectedCountryCode = useAppSelector((state) => state.worldMap.selectedCountryCode);
   // eslint-disable-next-line max-len
   const previouslySelectedCountry = useAppSelector((state) => state.worldMap.previouslySelectedCountry);
-  const svgMapRef = useRef<Element>(null);
+  const svgMapRef = useRef<SVGSVGElement>(null);
   const pathsCollection = svgMapRef.current?.children;
   const currentSelected = pathsCollection?.namedItem(selectedCountryCode);
   const previouslySelected = pathsCollection?.namedItem(previouslySelectedCountry);
@@ -33,6 +36,7 @@ function SvgWorld() {
       className="world-map__svg"
       ref={svgMapRef}
       onClick={(event) => handleSelectCountry(event.target as SVGPathElement)}
+      style={{ scale: `${zoomScale}` }}
     >
       <path
         id="AD"

@@ -1,13 +1,21 @@
-# React-Currencies-WorldMap
+# React-Interactive-WorldMap
+>> Currently building
 
-## What?
+## Preview of the project
+
 This repository has a world map that enables users to click on countries and displays informations about it :
-[insert img]
+![Map Preview](./src/assets/Screen-example.png)
 
-## How?
-This app is code in React-Vite.
+## Technologies
+
+- React (Vite)
+- Redux/ ReduxToolKit
+- Axios
+- Semantic-UI
 - SGV Map : [AMCHARTS](https://www.amcharts.com/svg-maps/?map=worldIndia).
-- APIs : [RESTCountries](https://restcountries.com/).
+- APIs :
+  - Global informations : [RESTCountries](https://restcountries.com/).
 
-## Why?
-I built this app in order to improve as a React developer and to show my skills.
+## Why building this?
+
+I am building this app in order to improve as a React developer and to show my skills.

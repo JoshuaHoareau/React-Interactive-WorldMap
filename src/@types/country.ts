@@ -1,4 +1,4 @@
-export interface CountryInfos {
+export interface ICountryInfos {
   name: Name
   tld: string[]
   cca2: string
