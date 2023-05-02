@@ -6,14 +6,13 @@ import CardInfos from '../CardInfos';
 import { useAppSelector } from '../../hooks/redux';
 
 function App() {
-  const selectedCountryCode = useAppSelector((state) => state.worldMap.selectedCountryCode);
-
+  const countryIsSelected = useAppSelector((state) => Boolean(state.worldMap.selectedCountryCode));
   return (
     <div className="app">
       <h1 className="app__title">World Map</h1>
       <Map />
-      {selectedCountryCode && <CardInfos />}
-      <Button content="Click Here" primary />
+      {/* displays infos only when datas are available */}
+      {countryIsSelected && <CardInfos />}
     </div>
   );
 }

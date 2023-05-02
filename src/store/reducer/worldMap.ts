@@ -6,7 +6,7 @@ import { ICountryInfos } from '../../@types/country';
 interface WorldMapState {
   previouslySelectedCountry: string
   selectedCountryCode: string
-  countryInfos: ICountryInfos[]
+  countryInfos: ICountryInfos[] | null
   loading: boolean
   error: string
 }
@@ -14,7 +14,7 @@ interface WorldMapState {
 const initialState: WorldMapState = {
   previouslySelectedCountry: '',
   selectedCountryCode: '',
-  countryInfos: [],
+  countryInfos: null,
   loading: false,
   error: '',
 };
